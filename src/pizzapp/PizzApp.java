@@ -1,13 +1,7 @@
 package pizzapp;
 
 public class PizzApp extends javax.swing.JFrame {
-
-    public PizzApp() {
-        initComponents();
-        
-        
-        int pizzaAlapAr2 = 1750;//pizza2 ara
-        
+        int pizzaAlapar;
         int meret = 1; //32cm
         
         int extra1 = 0;
@@ -16,6 +10,13 @@ public class PizzApp extends javax.swing.JFrame {
         int extrak = extra1 + extra2 + extra3;
         
         int db = 1;
+    
+    public PizzApp() {
+        initComponents();
+        
+        
+        int pizzaAlapAr2 = 1750;//pizza2 ara
+        
         
         int vegsoAr = pizzaAlapAr2 * meret + extrak;
         vegsoAr *= db;
@@ -68,9 +69,9 @@ public class PizzApp extends javax.swing.JFrame {
 
         buttonGroup1.add(rdbMeret25);
         rdbMeret25.setText("25 cm");
-        rdbMeret25.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdbMeret25ActionPerformed(evt);
+        rdbMeret25.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                rdbMeret25StateChanged(evt);
             }
         });
 
@@ -241,31 +242,9 @@ public class PizzApp extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rdbMeret25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbMeret25ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rdbMeret25ActionPerformed
-
     private void cmdValaszthatoPizzakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdValaszthatoPizzakActionPerformed
-        int pizzaAlapAr0 = 1250;//Margharita ara
-        int pizzaAlapAr1 = 1500;//Hawaii ara
-        int pizzaAlapAr2 = 1750;//Songoku ara
-        int pizzaAlapAr3 = 2000;//Diavola ara
-        
-        
-        int meret = 1; //32cm
-        
-        int extra1 = 0;
-        int extra2 = 0;
-        int extra3 = 0;
-        int extrak = extra1 + extra2 + extra3;
-        
-        int db = 1;
-        
-
-
         int pizzaIndex = cmdValaszthatoPizzak.getSelectedIndex();
-        int pizzaAlapar;
-        
+                
         if (pizzaIndex == 0){
             pizzaAlapar = 1250;
         }else if (pizzaIndex == 1){
@@ -281,6 +260,12 @@ public class PizzApp extends javax.swing.JFrame {
         vegsoAr *= db;
         lblAr.setText(vegsoAr + "");
     }//GEN-LAST:event_cmdValaszthatoPizzakActionPerformed
+
+    private void rdbMeret25StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rdbMeret25StateChanged
+        double meret = .75;
+        double vegsoAr = pizzaAlapar * meret + extrak;
+        vegsoAr *= db;
+    }//GEN-LAST:event_rdbMeret25StateChanged
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

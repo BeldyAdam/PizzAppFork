@@ -166,7 +166,7 @@
             <Property name="text" type="java.lang.String" value="25 cm"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdbMeret25ActionPerformed"/>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="rdbMeret25StateChanged"/>
           </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rdbMeret32">
