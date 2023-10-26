@@ -3,6 +3,8 @@ package pizzapp;
 public class PizzApp extends javax.swing.JFrame {
     //extrák db összesítő mülködése
     // vegső commit neve "kész"
+    // Összesítőben a Megrendelem gombb megnyomása után kerülnek be a dolgok
+    //statechange -> itemstatechange
         int pizzaAlapar;
         int meret = 1; //32cm
         
@@ -12,6 +14,7 @@ public class PizzApp extends javax.swing.JFrame {
         int extrak = extra1 + extra2 + extra3;
         
         int db = 1;
+        int vegsoAr;
     
     public PizzApp() {
         initComponents();
@@ -111,6 +114,11 @@ public class PizzApp extends javax.swing.JFrame {
         lblAr.setText("0");
 
         numDb.setModel(new javax.swing.SpinnerNumberModel(1, 1, 5, 1));
+        numDb.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                numDbStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlFizetendoLayout = new javax.swing.GroupLayout(pnlFizetendo);
         pnlFizetendo.setLayout(pnlFizetendoLayout);
@@ -271,8 +279,12 @@ public class PizzApp extends javax.swing.JFrame {
         szamitasEsKiiras();
     }//GEN-LAST:event_rdbMeret32StateChanged
 
+    private void numDbStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_numDbStateChanged
+        
+    }//GEN-LAST:event_numDbStateChanged
+
     private void szamitasEsKiiras() {
-        int vegsoAr = pizzaAlapar * meret + extrak;
+        vegsoAr = pizzaAlapar * meret + extrak;
         vegsoAr *= db;
         lblAr.setText(vegsoAr + "");
     }
