@@ -58,6 +58,11 @@ public class PizzApp extends javax.swing.JFrame {
 
         cmdValaszthatoPizzak.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Margherita", "Hawaii", "Songoku", "Diavola" }));
         cmdValaszthatoPizzak.setSelectedIndex(2);
+        cmdValaszthatoPizzak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdValaszthatoPizzakActionPerformed(evt);
+            }
+        });
 
         pnlMeret.setBorder(javax.swing.BorderFactory.createTitledBorder("Méret"));
 
@@ -239,6 +244,43 @@ public class PizzApp extends javax.swing.JFrame {
     private void rdbMeret25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbMeret25ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rdbMeret25ActionPerformed
+
+    private void cmdValaszthatoPizzakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdValaszthatoPizzakActionPerformed
+        int pizzaAlapAr0 = 1250;//Margharita ara
+        int pizzaAlapAr1 = 1500;//Hawaii ara
+        int pizzaAlapAr2 = 1750;//Songoku ara
+        int pizzaAlapAr3 = 2000;//Diavola ara
+        
+        
+        int meret = 1; //32cm
+        
+        int extra1 = 0;
+        int extra2 = 0;
+        int extra3 = 0;
+        int extrak = extra1 + extra2 + extra3;
+        
+        int db = 1;
+        
+
+
+        int pizzaIndex = cmdValaszthatoPizzak.getSelectedIndex();
+        int pizzaAlapar;
+        
+        if (pizzaIndex == 0){
+            pizzaAlapar = 1250;
+        }else if (pizzaIndex == 1){
+            pizzaAlapar = 1500;
+        }else if (pizzaIndex == 2){
+            pizzaAlapar = 1750;
+        }else{
+            pizzaAlapar = 2000;
+        }
+        
+        
+        int vegsoAr = pizzaAlapar * meret + extrak;
+        vegsoAr *= db;
+        lblAr.setText(vegsoAr + "");
+    }//GEN-LAST:event_cmdValaszthatoPizzakActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
