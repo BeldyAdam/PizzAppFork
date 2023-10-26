@@ -1,6 +1,8 @@
 package pizzapp;
 
 public class PizzApp extends javax.swing.JFrame {
+    //extrák db összesítő mülködése
+    // vegső commit neve "kész"
         int pizzaAlapar;
         int meret = 1; //32cm
         
@@ -15,13 +17,7 @@ public class PizzApp extends javax.swing.JFrame {
         initComponents();
         
         
-        int pizzaAlapAr2 = 1750;//pizza2 ara
-        
-        
-        int vegsoAr = pizzaAlapAr2 * meret + extrak;
-        vegsoAr *= db;
-        
-        lblAr.setText(vegsoAr + "");
+        szamitasEsKiiras();
     }
 
     @SuppressWarnings("unchecked")
@@ -78,6 +74,11 @@ public class PizzApp extends javax.swing.JFrame {
         buttonGroup1.add(rdbMeret32);
         rdbMeret32.setSelected(true);
         rdbMeret32.setText("32 cm");
+        rdbMeret32.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                rdbMeret32StateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlMeretLayout = new javax.swing.GroupLayout(pnlMeret);
         pnlMeret.setLayout(pnlMeretLayout);
@@ -256,16 +257,25 @@ public class PizzApp extends javax.swing.JFrame {
         }
         
         
-        int vegsoAr = pizzaAlapar * meret + extrak;
-        vegsoAr *= db;
-        lblAr.setText(vegsoAr + "");
+        szamitasEsKiiras();
     }//GEN-LAST:event_cmdValaszthatoPizzakActionPerformed
 
     private void rdbMeret25StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rdbMeret25StateChanged
         double meret = .75;
         double vegsoAr = pizzaAlapar * meret + extrak;
         vegsoAr *= db;
+        lblAr.setText(vegsoAr + "");
     }//GEN-LAST:event_rdbMeret25StateChanged
+
+    private void rdbMeret32StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rdbMeret32StateChanged
+        szamitasEsKiiras();
+    }//GEN-LAST:event_rdbMeret32StateChanged
+
+    private void szamitasEsKiiras() {
+        int vegsoAr = pizzaAlapar * meret + extrak;
+        vegsoAr *= db;
+        lblAr.setText(vegsoAr + "");
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
