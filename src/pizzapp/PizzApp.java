@@ -5,13 +5,14 @@ public class PizzApp extends javax.swing.JFrame {
     // vegső commit neve "kész"
     // Összesítőben a Megrendelem gombb megnyomása után kerülnek be a dolgok
     //statechange -> itemstatechange
+    
         int pizzaAlapar;
         int meret = 1; //32cm
         
         int extra1 = 0;
         int extra2 = 0;
         int extra3 = 0;
-        int extrak = extra1 + extra2 + extra3;
+        int extrak = 0;
         
         int db = 1;
         int vegsoAr;
@@ -153,10 +154,25 @@ public class PizzApp extends javax.swing.JFrame {
         pnlExtrak.setBorder(javax.swing.BorderFactory.createTitledBorder("Extrák"));
 
         chbSajt.setText("sajt");
+        chbSajt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbSajtActionPerformed(evt);
+            }
+        });
 
         chbHagyma.setText("hagyma");
+        chbHagyma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbHagymaActionPerformed(evt);
+            }
+        });
 
         chbAnanasz.setText("ananász");
+        chbAnanasz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbAnanaszActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlExtrakLayout = new javax.swing.GroupLayout(pnlExtrak);
         pnlExtrak.setLayout(pnlExtrakLayout);
@@ -186,6 +202,11 @@ public class PizzApp extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txaOsszesito);
 
         btnRendel.setText("Megrendelem");
+        btnRendel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRendelActionPerformed(evt);
+            }
+        });
 
         lblOsszesito.setText("Összestő:");
 
@@ -269,7 +290,8 @@ public class PizzApp extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdValaszthatoPizzakActionPerformed
 
     private void numDbStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_numDbStateChanged
-        
+        db = (int)numDb.getValue();
+        szamitasEsKiiras();
     }//GEN-LAST:event_numDbStateChanged
 
     private void rdbMeret25ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdbMeret25ItemStateChanged
@@ -283,8 +305,65 @@ public class PizzApp extends javax.swing.JFrame {
         szamitasEsKiiras();
     }//GEN-LAST:event_rdbMeret32ItemStateChanged
 
+    private void chbSajtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbSajtActionPerformed
+        if (extra1 == 0) {
+            extra1 = 250;
+        }else{
+            extra1 = 0;
+        }
+        szamitasEsKiiras();
+    }//GEN-LAST:event_chbSajtActionPerformed
+
+    private void chbHagymaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbHagymaActionPerformed
+                if (extra2 == 0) {
+                    extra2 = 250;
+                }else{
+                    extra2 = 0;
+        }
+        szamitasEsKiiras();
+    }//GEN-LAST:event_chbHagymaActionPerformed
+
+    private void chbAnanaszActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbAnanaszActionPerformed
+        if (extra3 == 0) {
+            extra3 = 250;
+        }else{
+            extra3 = 0;
+        }
+        szamitasEsKiiras();
+        
+    }//GEN-LAST:event_chbAnanaszActionPerformed
+
+    private void btnRendelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRendelActionPerformed
+        String üzenet = "";
+        üzenet +="A választott pizza: "+cmdValaszthatoPizzak.getSelectedItem()+" ("+db+" db)\n";
+        üzenet +="mérete: ";
+        
+        if (meret == 1) {
+            üzenet += "32 cm\n";
+        }else{
+            üzenet += "25 cm\n";
+        }
+        
+        üzenet +="feltétek: \n";
+        
+        if (extra1 != 0) {
+            üzenet +="-sajt\n";
+        }
+        
+        if (extra2 != 0) {
+            üzenet +="-hagyma\n";
+        }
+        
+        if (extra3 != 0) {
+            üzenet +="-ananász\n";
+        }
+        
+       txaOsszesito.setText(üzenet);
+    }//GEN-LAST:event_btnRendelActionPerformed
+
     private void szamitasEsKiiras() {
-        vegsoAr = pizzaAlapar * meret + extrak;
+        extrak = extra1 + extra2 + extra3;
+        vegsoAr = pizzaAlapar * meret + extrak;  
         vegsoAr *= db;
         lblAr.setText(vegsoAr + "");
     }
