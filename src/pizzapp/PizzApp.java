@@ -68,18 +68,18 @@ public class PizzApp extends javax.swing.JFrame {
 
         buttonGroup1.add(rdbMeret25);
         rdbMeret25.setText("25 cm");
-        rdbMeret25.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                rdbMeret25StateChanged(evt);
+        rdbMeret25.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rdbMeret25ItemStateChanged(evt);
             }
         });
 
         buttonGroup1.add(rdbMeret32);
         rdbMeret32.setSelected(true);
         rdbMeret32.setText("32 cm");
-        rdbMeret32.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                rdbMeret32StateChanged(evt);
+        rdbMeret32.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rdbMeret32ItemStateChanged(evt);
             }
         });
 
@@ -268,20 +268,20 @@ public class PizzApp extends javax.swing.JFrame {
         szamitasEsKiiras();
     }//GEN-LAST:event_cmdValaszthatoPizzakActionPerformed
 
-    private void rdbMeret25StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rdbMeret25StateChanged
+    private void numDbStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_numDbStateChanged
+        
+    }//GEN-LAST:event_numDbStateChanged
+
+    private void rdbMeret25ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdbMeret25ItemStateChanged
         double meret = .75;
         double vegsoAr = pizzaAlapar * meret + extrak;
         vegsoAr *= db;
         lblAr.setText(vegsoAr + "");
-    }//GEN-LAST:event_rdbMeret25StateChanged
+    }//GEN-LAST:event_rdbMeret25ItemStateChanged
 
-    private void rdbMeret32StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rdbMeret32StateChanged
+    private void rdbMeret32ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdbMeret32ItemStateChanged
         szamitasEsKiiras();
-    }//GEN-LAST:event_rdbMeret32StateChanged
-
-    private void numDbStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_numDbStateChanged
-        
-    }//GEN-LAST:event_numDbStateChanged
+    }//GEN-LAST:event_rdbMeret32ItemStateChanged
 
     private void szamitasEsKiiras() {
         vegsoAr = pizzaAlapar * meret + extrak;
